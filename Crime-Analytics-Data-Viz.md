@@ -62,7 +62,6 @@ SanFranciscoData
 # table(month(mdy_hms(SeattleData$Occurred.Date.or.Date.Range.Start)),SeattleData$Month)
 
 City <- rep(c("Seattle","San Francisco"),c(dim(SeattleData)[1], dim(SanFranciscoData)[1]))                
-
 Date <- date(mdy_hms(SeattleData$Occurred.Date.or.Date.Range.Start))
 Date <- append(Date, mdy(SanFranciscoData$Date))
 
@@ -96,6 +95,54 @@ CrimeTibble
     ## # ... with 61,762 more rows
 
 ``` r
+mapSF <- qmap("san francisco", zoom=11)
+```
+
+    ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=san+francisco&zoom=11&size=640x640&scale=2&maptype=terrain&language=en-EN&sensor=false
+
+    ## Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=san%20francisco&sensor=false
+
+    ## Warning: `panel.margin` is deprecated. Please use `panel.spacing` property
+    ## instead
+
+``` r
+mapSF + geom_point(data = SanFranciscoData, aes(x = SanFranciscoData$X, y = SanFranciscoData$Y), color="red", size=.5, alpha=0.2)
+```
+
+![](Crime-Analytics-Data-Viz_files/figure-markdown_github/SanFranciscoMap-1.png)
+
+``` r
+mapS <- qmap("seattle", zoom=11)
+```
+
+    ## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=seattle&zoom=11&size=640x640&scale=2&maptype=terrain&language=en-EN&sensor=false
+
+    ## Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=seattle&sensor=false
+
+    ## Warning: `panel.margin` is deprecated. Please use `panel.spacing` property
+    ## instead
+
+``` r
+mapS + geom_point(data = SeattleData, aes(x=SeattleData$Longitude, y=SeattleData$Latitude), color="red", size=.5, alpha=.2)
+```
+
+    ## Warning: Removed 2050 rows containing missing values (geom_point).
+
+![](Crime-Analytics-Data-Viz_files/figure-markdown_github/SeattleMap-1.png)
+
+``` r
+plot(SanFranciscoData$X,SanFranciscoData$Y)
+```
+
+![](Crime-Analytics-Data-Viz_files/figure-markdown_github/other%20stuff-1.png)
+
+``` r
+plot(SeattleData$Longitude[SeattleData$Longitude < 0],SeattleData$Latitude[SeattleData$Latitude > 0])
+```
+
+![](Crime-Analytics-Data-Viz_files/figure-markdown_github/other%20stuff-2.png)
+
+``` r
 table(weekdays(mdy_hms(SeattleData$Occurred.Date.or.Date.Range.Start)))
 ```
 
@@ -115,7 +162,7 @@ table(weekdays(mdy(SanFranciscoData$Date)))
 plot(sort(mdy_hms(SeattleData$Date.Reported)-mdy_hms(SeattleData$Occurred.Date.or.Date.Range.Start)))
 ```
 
-![](Crime-Analytics-Data-Viz_files/figure-markdown_github/rearrange-1.png)
+![](Crime-Analytics-Data-Viz_files/figure-markdown_github/other%20stuff-3.png)
 
 ``` r
 table(hour(mdy_hms(SeattleData$Occurred.Date.or.Date.Range.Start)))
@@ -164,11 +211,5 @@ Including Plots
 ---------------
 
 You can also embed plots, for example:
-
-``` r
-plot(pressure)
-```
-
-![](Crime-Analytics-Data-Viz_files/figure-markdown_github/pressure-1.png)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
