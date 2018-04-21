@@ -1,4 +1,4 @@
-# Data-science-at-scale-Data-viz-project
+# Data-science-at-scale-data-visualisation-project
 
 Please click the other .md file to see my code and output for this project.
 
