@@ -1,6 +1,6 @@
 # Data-science-at-scale-data-visualisation-project
 
-Please click the html file to see the output for this project.
+Please click the Crime-Analytics-Data-Viz.md file to see the output for this project.
 
 This data visualisation project looks at crime data from Seattle and San Francisco from summer 2014 and San Francisco from summer 2017. I decided to compare crime in the two cities; the variables in the two cities datasets did not have the same names. I also decided to access the San Francisco data from the website. It required some exploratory data analysis to determine the layout and form of the data. The crimes are labelled differently in the two cities; the data analyst would need input from a subject matter expert if comparing crimes in the two cities.
 
